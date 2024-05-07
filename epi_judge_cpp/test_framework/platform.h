@@ -10,6 +10,8 @@
 #define PLATFORM_WIN
 #endif
 
+// #define PLATFORM_WIN
+
 #include <iostream>
 
 #ifdef PLATFORM_WIN

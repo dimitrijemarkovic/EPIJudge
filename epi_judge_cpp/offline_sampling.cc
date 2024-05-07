@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <functional>
 #include <iterator>
+#include <random>
 #include <vector>
 
 #include "test_framework/generic_test.h"
@@ -8,9 +9,17 @@
 #include "test_framework/timed_executor.h"
 using std::bind;
 using std::vector;
+using std::default_random_engine;
+using std::random_device;
+using std::swap;
+using std::uniform_int_distribution;
+
 void RandomSampling(int k, vector<int>* A_ptr) {
-  // TODO - you fill in here.
-  return;
+  vector<int>& A = *A_ptr;
+  default_random_engine seed((random_device())());
+  for(int i =0; i < k; i++){
+    swap(A[i], A[std::uniform_int_distribution<int>{i, static_cast<int>(A.size()) - 1}(seed)]);
+  };
 }
 bool RandomSamplingRunner(TimedExecutor& executor, int k, vector<int> A) {
   using namespace test_framework;

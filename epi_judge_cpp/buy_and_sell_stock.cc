@@ -4,7 +4,20 @@
 using std::vector;
 double BuyAndSellStockOnce(const vector<double>& prices) {
   // TODO - you fill in here.
-  return 0.0;
+
+  if(prices.size() < 2) return 0.0;
+
+  double result = 0.0, min = prices[0];
+
+  for(auto i = 1; i < prices.size(); i++){
+    if(prices[i] < min){
+      min = prices[i];
+    } else if(prices[i] - min > result) {
+      result = prices[i] - min;
+    }
+  }
+
+  return result;
 }
 
 int main(int argc, char* argv[]) {
