@@ -6,7 +6,15 @@ using std::string;
 
 void ReverseWords(string* s) {
   // TODO - you fill in here.
-  return;
+  reverse(begin(*s), end(*s));
+
+  size_t start = 0, finish;
+  while ((finish = s->find(" ", start)) != string::npos) {
+    reverse(begin(*s) + start, begin(*s) + finish);
+    start = finish + 1;
+  }
+  
+  reverse(begin(*s) + start, end(*s));
 }
 string ReverseWordsWrapper(TimedExecutor& executor, string s) {
   string s_copy = s;
